@@ -29,9 +29,12 @@ def checkIdcard(idcard):
                 res=re.search(r'^(((?P<province>[1-9]\d)(?P<city>\d{4}))(?P<born_year>[12]\d{3})(?P<born_month>0[1-9]|1[012])(?P<born_day>0[1-9]|[12][0-9]|3[01])\d{2}(?P<gender>\d)[0-9xX])$',idcard)
                 if res:
                     s=res.group(3)
-                    n=res.group(2)
                     print("出生省份：",area[s])
-                    print("出生城市: ",regions[n])
+                    n=res.group(2)
+                    if(n in regions.keys()):
+                        print("出生城市: ",regions[n])
+                    else:
+                        print("地区非法")
                     print ("出生日期: ",res.group(5),res.group(6),res.group(7))
                     num=int(res.group(8))
                     if (num % 2==0):
